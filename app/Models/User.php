@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -58,4 +59,16 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    const ROLES = [
+        'admin' => 'Admin',
+        'owner' => 'Owner',
+        'clerk' => 'Clerk',
+    ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class, 'tenant_id');
+    }
+
 }
